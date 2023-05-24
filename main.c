@@ -66,17 +66,23 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 	{
 		if (isatty(STDIN_FILENO))
 		{
-			printf("$ ");
+			_printf("$ ");
 			fflush(stdout);
 		}
 		num_chars = getline(&buffer, &buf_size, stdin);
 		if (num_chars == 1)
 			continue;
 		if (num_chars == -1)
+		{
+			free(buffer);
 			break;
+		}
 		token_command(buffer, args);
 		if (check_exit(args, &run_flag))
+		{
+			free(buffer);
 			break;
+		}
 		check_env(args, env);
 		filepath = search_path(args[0]);
 		if (check_filepath(filepath))
