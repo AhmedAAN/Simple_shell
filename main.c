@@ -64,7 +64,10 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 
 	while (run_flag)
 	{
-		_printf("# ");
+		if (isatty(STDIN_FILENO))
+		{
+			printf("# ");
+		}
 		num_chars = getline(&buffer, &buf_size, stdin);
 		if (num_chars == 1)
 			continue;
