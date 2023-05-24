@@ -64,7 +64,7 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 
 	while (run_flag)
 	{
-		printf("#cisfun$ ");
+		_printf("#cisfun$ ");
 		num_chars = getline(&buffer, &buf_size, stdin);
 		if (num_chars == 1)
 			continue;
