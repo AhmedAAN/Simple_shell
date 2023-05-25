@@ -22,7 +22,9 @@ void process(char *filepath, char *args[MAX_ARGUMENTS], char **env)
 		}
 		else
 		{
-			_printf("%s: command not found\n", args[0]);
+			_printf(args[0]);
+			_printf(": command not found");
+			_putchar('\n');
 			exit(EXIT_FAILURE);
 		}
 	}
