@@ -31,26 +31,6 @@ int check_exit(char **args, int *run_flag)
 	return (0);
 }
 
-/**
- * check_env - prints environment variables
- * @args: the commands array
- * @env: a pointer to the environmental variable
- * Return: 0 failed, 1 success
- */
-int check_env(char **args, char **env)
-{
-	if (strcmp(args[0], "env") == 0)
-	{
-		while (*env != NULL)
-		{
-			_printf(*env);
-			_putchar('\n');
-			env++;
-		}
-		return (1);
-	}
-	return (0);
-}
 
 /**
  * main - Entry point for the shell program
@@ -81,8 +61,6 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 		}
 		token_command(buffer, args);
 		if (check_exit(args, &run_flag))
-			break;
-		if (check_env(args, env))
 			break;
 		filepath = search_path(args[0]);
 		if (check_filepath(filepath))

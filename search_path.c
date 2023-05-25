@@ -36,6 +36,7 @@ char *search_path(char *command)
 		if (access(temp_path, X_OK) == 0)
 		{
 			executable_path = temp_path;
+			free(temp_path);
 			break;
 		}
 		free(temp_path);
@@ -43,5 +44,6 @@ char *search_path(char *command)
 	}
 
 	free(path_copy);
+	free(path_dir);
 	return (executable_path);
 }
