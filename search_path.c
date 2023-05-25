@@ -44,6 +44,5 @@ char *search_path(char *command)
 	}
 
 	free(path_copy);
-	free(path_dir);
 	return (executable_path);
 }
