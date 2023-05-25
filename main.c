@@ -66,8 +66,6 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 		if (check_filepath(filepath))
 			continue;
 		process(filepath, args, env);
-		if (filepath != NULL && filepath != args[0])
-			free(filepath);
 	}
 	free(buffer);
 	return (0);
