@@ -74,13 +74,11 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 			continue;
 		if (num_chars == -1)
 		{
-			free(buffer);
 			break;
 		}
 		token_command(buffer, args);
 		if (check_exit(args, &run_flag))
 		{
-			free(buffer);
 			break;
 		}
 		check_env(args, env);
