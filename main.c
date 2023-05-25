@@ -64,10 +64,13 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 			break;
 		filepath = search_path(args[0]);
 		if (check_filepath(filepath))
+		{
+			free(filepath);
 			continue;
+		}
 		process(filepath, args, env);
+		free(filepath);
 	}
-	free(filepath);
 	free(buffer);
 	return (0);
 }
