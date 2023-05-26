@@ -1,37 +1,6 @@
 #include "shell.h"
 
 /**
- * execute_commands - Executes the commands from the command line
- * @buffer: The input buffer containing the commands
- * @env: The environment variables
- * Return: 1 sucess, 0 error
- */
-int execute_commands(char *buffer, char **env)
-{
-	char *args[MAX_ARGUMENTS], *filepath;
-	int num_args, i;
-	
-	num_args = token_command(buffer, args);
-	if (num_args == 0)
-	{
-		return (1);
-	}
-	for (i = 0; i < num_args; i++)
-	{
-		filepath = search_path(args[i]);
-		if (check_filepath(filepath))
-		{
-			free(filepath);
-			continue;
-		}
-		process(filepath, args, env);
-		free(filepath);
-	}
-	strtok(buffer, "\0");
-	return (1); 
-}
-
-/**
  * check_filepath - check if file path in null
  * @filepath: a pointer to the filepath
  * Return: 1 if filepath is NULL and 0 if not
@@ -72,7 +41,7 @@ int check_exit(char **args, int *run_flag)
  */
 int main(UNUSED int ac, UNUSED char **av, char **env)
 {
-	char *args[MAX_ARGUMENTS], *buffer = NULL;
+	char *args[MAX_ARGUMENTS], *filepath, *buffer = NULL;
 	size_t buf_size;
 	int run_flag = 1, num_chars;
 
@@ -90,9 +59,18 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 		{
 			break;
 		}
-		execute_commands(buffer, env);
+		if (token_command(buffer, args) == 0)
+			continue;
 		if (check_exit(args, &run_flag))
 			break;
+		filepath = search_path(args[0]);
+		if (check_filepath(filepath))
+		{
+			free(filepath);
+			continue;
+		}
+		process(filepath, args, env);
+		free(filepath);
 	}
 	free(buffer);
 	return (0);
