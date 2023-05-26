@@ -73,5 +73,5 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 		free(filepath);
 	}
 	free(buffer);
-	return (EXIT_FAILURE);
+	return (0);
 }
