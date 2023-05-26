@@ -17,6 +17,10 @@ int token_command(char *buffer, char **args)
 
 	while (arg != NULL && num_args < MAX_ARGUMENTS - 1)
 	{
+		if (strcmp(arg, ";") == 0)
+		{
+			arg = "\0";
+		}
 		if (arg != NULL)
 		{
 			args[num_args] = arg;
