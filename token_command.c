@@ -17,7 +17,10 @@ int token_command(char *buffer, char **args)
 
 	while (arg != NULL && num_args < MAX_ARGUMENTS - 1)
 	{
-		args[num_args] = arg;
+		if (arg != NULL)
+		{
+			args[num_args] = arg;
+		}
 		num_args++;
 		arg = strtok(NULL, " \n");
 	}

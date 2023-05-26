@@ -18,10 +18,11 @@ int _putchar(char c)
  */
 void _printf(char *c)
 {
-    int i = 0;
-    while (c[i] != '\0')
-    {
-        _putchar(c[i]);
-        i++;
-    }
+	int i = 0;
+
+	while (c[i] != '\0')
+	{
+		_putchar(c[i]);
+		i++;
+	}
 }

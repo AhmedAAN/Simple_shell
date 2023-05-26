@@ -31,23 +31,6 @@ int check_exit(char **args, int *run_flag)
 	return (0);
 }
 
-/**
- * check_env - prints environment variables
- * @args: the commands array
- * @env: a pointer to the environmental variable
- */
-void check_env(char **args, char **env)
-{
-	if (strcmp(args[0], "env") == 0)
-	{
-		while (*env != NULL)
-		{
-			_printf(*env);
-			_putchar('\n');
-			env++;
-		}
-	}
-}
 
 /**
  * main - Entry point for the shell program
@@ -64,20 +47,30 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 
 	while (run_flag)
 	{
-		printf("$ ");
+		if (isatty(STDIN_FILENO))
+		{
+			_printf("$ ");
+			fflush(stdout);
+		}
 		num_chars = getline(&buffer, &buf_size, stdin);
 		if (num_chars == 1)
 			continue;
 		if (num_chars == -1)
+		{
 			break;
-		token_command(buffer, args);
+		}
+		if (token_command(buffer, args) == 0)
+			continue;
 		if (check_exit(args, &run_flag))
 			break;
-		check_env(args, env);
 		filepath = search_path(args[0]);
 		if (check_filepath(filepath))
+		{
+			free(filepath);
 			continue;
+		}
 		process(filepath, args, env);
+		free(filepath);
 	}
 	free(buffer);
 	return (0);
