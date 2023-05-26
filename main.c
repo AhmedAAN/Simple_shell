@@ -59,7 +59,8 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 		{
 			break;
 		}
-		token_command(buffer, args);
+		if (token_command(buffer, args) == 0)
+			continue;
 		if (check_exit(args, &run_flag))
 			break;
 		filepath = search_path(args[0]);
