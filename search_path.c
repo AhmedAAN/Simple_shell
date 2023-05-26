@@ -35,7 +35,7 @@ char *search_path(char *command)
 
 		if (access(temp_path, X_OK) == 0)
 		{
-			executable_path = strdup(temp_path);;
+			executable_path = strdup(temp_path);
 			free(temp_path);
 			break;
 		}

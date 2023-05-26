@@ -35,10 +35,8 @@ void process(char *filepath, char *args[MAX_ARGUMENTS], char **env)
 	}
 	else
 	{
-		do
-		{
+		do {
 			waitpid(pid, &status, WUNTRACED);
-		}
-		while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 }
