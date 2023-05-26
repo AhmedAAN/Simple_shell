@@ -9,7 +9,7 @@
  */
 char *_strtok(char *str, const char *delimiters)
 {
-	static char *input = NULL;
+	static char *input;
 	char *token;
 
 	if (str != NULL)

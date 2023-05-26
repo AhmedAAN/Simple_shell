@@ -28,5 +28,6 @@ int check_filepath(char *filepath);
 void process(char *filepath, char *args[MAX_ARGUMENTS], char **env);
 int _putchar(char c);
 void _printf(char *c);
+char *_strtok(char *str, const char *delimiters);
 
 #endif
