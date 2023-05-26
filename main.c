@@ -69,8 +69,11 @@ int main(UNUSED int ac, UNUSED char **av, char **env)
 			free(filepath);
 			continue;
 		}
-		process(filepath, args, env);
-		free(filepath);
+		if (filepath)
+		{
+			process(filepath, args, env);
+			free(filepath);
+		}
 	}
 	free(buffer);
 	return (0);
