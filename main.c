@@ -24,7 +24,7 @@ int execute_commands(char *buffer, char **env)
 			free(filepath);
 			continue;
 		}
-		process(filepath, args[i], env);
+		process(filepath, args, env);
 		free(filepath);
 	}
 	strtok(buffer, "\0");
@@ -72,9 +72,9 @@ int check_exit(char **args, int *run_flag)
  */
 int main(UNUSED int ac, UNUSED char **av, char **env)
 {
-	char *args[MAX_ARGUMENTS], *filepath, *buffer = NULL;
+	char *args[MAX_ARGUMENTS], *buffer = NULL;
 	size_t buf_size;
-	int run_flag = 1, num_chars, num_args;
+	int run_flag = 1, num_chars;
 
 	while (run_flag)
 	{
